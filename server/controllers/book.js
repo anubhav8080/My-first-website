@@ -2,23 +2,27 @@ let express = require ('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 let Book = require('../model/books');
-module.exports.displayBookList = (req,res,next)=>{
-    Book.find((err,bookList)=>{
-        if(err)
-        {
-        return console.error(err);
+
+module.exports.displayBookList = (req, res, next) => {
+    Book.find({})
+      .collation({ locale: "en", strength: 2 })
+      .sort({ name: 1 })
+      .exec((err, bookList) => {
+        if (err) {
+          return console.error(err);
+        } else {
+          res.render("book/list", {
+            title: "Contact",
+            BookList: bookList,
+            displayName: req.user ? req.user.displayName : "",
+          });
         }
-        else
-        {
-         //console.log(BookList);
-         res.render('book/list', {title:'Books', BookList:bookList});
-        }
-    });
-}
+      });
+  };
 
 module.exports.displayAddPage = (req,res,next)=>{
-    res.render('book/add',{title:'Add Book'})
-
+    res.render('book/add',{title:'Add Book',
+    displayName:req.user ? req.user.displayName:''})
 }
 
 module.exports.processAddPage = (req,res,next)=>{
@@ -41,8 +45,8 @@ module.exports.processAddPage = (req,res,next)=>{
         }
     });
     }
-    
-        module.exports.displayEditPage = (req,res,next)=>{
+
+module.exports.displayEditPage = (req,res,next)=>{
             let id = req.params.id;
             Book.findById(id,(err,bookToEdit)=>{
                 if(err)
@@ -52,13 +56,14 @@ module.exports.processAddPage = (req,res,next)=>{
                 }
                 else
                 {
-                    res.render('book/edit',{title:'Edit Book', book: bookToEdit});
-                    
+                    res.render('book/edit',{title:'Edit Book', book: bookToEdit,
+                    displayName:req.user ? req.user.displayName:''});
                 }
+            
             });
-            }
+        }
 
-        module.exports.processEditPage = (req,res,next)=>{
+module.exports.processEditPage = (req,res,next)=>{
             let id = req.params.id
             console.log(req.body);
             let updatedBook = Book({
@@ -82,7 +87,7 @@ module.exports.processAddPage = (req,res,next)=>{
             });
         }
 
-        module.exports.performDelete= (req,res,next)=>{
+module.exports.performDelete= (req,res,next)=>{
             let id = req.params.id;
             Book.remove({_id:id},(err)=>{
                 if(err)
@@ -94,5 +99,7 @@ module.exports.processAddPage = (req,res,next)=>{
                 {
                     res.redirect('/bookList');
                 }
+                
             });
             }
+        

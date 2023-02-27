@@ -10,9 +10,9 @@ router.get('/home', indexController.displayHomePage);
 /* GET About Us page. */
 router.get('/about', indexController.displayAboutPage);
 /* GET products page. */
-router.get('/products', indexController.displayProductsPage);
+router.get('/project', indexController.displayProductsPage);
 /* GET Services page. */
-router.get('/services', indexController.displayServicesPage);
+router.get('/service', indexController.displayServicesPage);
 /* GET Contact Us page. */
 router.get('/contact', indexController.displayContactPage);
 

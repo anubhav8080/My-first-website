@@ -1,20 +1,24 @@
-<<<<<<< HEAD
-<%-include ('partials/header.ejs');-%>
-<%-include ('partials/main_nav.ejs');-%>
-=======
-<%- include('partials/header'); -%>
-<%- include('partials/main_nav'); -%>
->>>>>>> 6fe48f3c64e315231db0268ff2db189540e2d78e
+<!-- Name - Anubhav CHAUHAN
+Student-ID - 301309820 -->
+<%-include ('partials/header.ejs');%>
+<%-include ('partials/main_nav.ejs');%>
+
+<div class="contact-section">
+    <h2>Contact Me</h2>
+    <div class="contact-info">
+      <p>Name: Anubhav Chauhan</p>
+      <p>Email: anubhav8080@gmail.com</p>
+      <p>Phone: 123-456-7890</p>
+    </div>
+    <div class="contact-form">
+      <form action="/">
+        <input type="text" name="firstName" placeholder="First Name" required>
+        <input type="text" name="lastName" placeholder="Last Name" required>
+        <input type="text" name="contactNumber" placeholder="Contact Number" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
   
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<p>Contact us using the following details: <br><b>Phone Number:222-3456-7865. <br>Email:ddf@yahoo.com.</b></p>
-
-<<<<<<< HEAD
-   <%-include ('partials/bottom_nav.ejs');%>
-<%-include ('partials/footer.ejs');%>   
-
-=======
-<%- include('partials/bottom_nav'); -%>
-<%- include('partials/footer'); -%>
->>>>>>> 6fe48f3c64e315231db0268ff2db189540e2d78e
