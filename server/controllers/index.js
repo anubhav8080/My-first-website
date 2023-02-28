@@ -94,7 +94,7 @@ module.exports.processRegisterPage = (req,res,next)=>{
         if(err)
         {
             console.log("Error:inserting New User");
-            if(err.nme == "UserExistsError")
+            if(err.name == "UserExistsError")
             {
                 req.flash(
                     'registerMessage',
@@ -114,7 +114,7 @@ module.exports.processRegisterPage = (req,res,next)=>{
             // if no error exists, then registration is successful
             // redirect the user and authenticate them
             return passport.authenticate('local')(req,res,()=>{
-                res.redirect('/bookList')
+                res.redirect('/contactList')
             });
         }
     });
